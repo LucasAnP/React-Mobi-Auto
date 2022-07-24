@@ -24,7 +24,7 @@ export const FormContainer = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    width: 41%;
+    width: 26rem;
 
     padding: 20px 40px 30px 40px;
 
