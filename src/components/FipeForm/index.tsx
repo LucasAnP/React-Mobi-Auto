@@ -1,9 +1,18 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useFetch } from '../../hooks/useFetch'
 import { api } from '../../services/api'
 import { ButtonApply } from '../ButtonApply'
-import { ButtonContainer, ButtonRounded, ButtonText, Container, FormContainer, ResultFormContainer, SpecificFormContainer, TextAfterResult } from './styles'
+import {
+    ButtonContainer,
+    ButtonRounded,
+    ButtonText,
+    Container,
+    FormContainer,
+    ResultFormContainer,
+    SpecificFormContainer,
+    TextAfterResult,
+} from './styles'
 
 interface FipeFormProps {
     setResulted: (resulted: boolean) => void
@@ -11,8 +20,8 @@ interface FipeFormProps {
 }
 
 interface Brand {
-    year: string;
-    nome: string;
+    year: string
+    nome: string
 }
 
 export function FipeForm({ setResulted, resulted }: FipeFormProps) {
@@ -77,7 +86,9 @@ export function FipeForm({ setResulted, resulted }: FipeFormProps) {
                     <ResultFormContainer>
                         <ButtonContainer>
                             <ButtonRounded>
-                                <ButtonText>{valueOfCar.split(',')[0]}</ButtonText>
+                                <ButtonText>
+                                    {valueOfCar.split(',')[0]}
+                                </ButtonText>
                             </ButtonRounded>
                         </ButtonContainer>
                     </ResultFormContainer>
@@ -104,7 +115,10 @@ export function FipeForm({ setResulted, resulted }: FipeFormProps) {
                                 >
                                     {brands.map(value => {
                                         return (
-                                            <MenuItem value={value.codigo}>
+                                            <MenuItem
+                                                value={value.codigo}
+                                                key={value.codigo}
+                                            >
                                                 {value.nome.split(' ')[0]}
                                             </MenuItem>
                                         )
@@ -128,7 +142,10 @@ export function FipeForm({ setResulted, resulted }: FipeFormProps) {
                                 >
                                     {models.map(value => {
                                         return (
-                                            <MenuItem value={value.codigo}>
+                                            <MenuItem
+                                                value={value.codigo}
+                                                key={value.codigo}
+                                            >
                                                 {value.nome}
                                             </MenuItem>
                                         )
@@ -152,7 +169,10 @@ export function FipeForm({ setResulted, resulted }: FipeFormProps) {
                                 >
                                     {years.map(value => {
                                         return (
-                                            <MenuItem value={value.codigo}>
+                                            <MenuItem
+                                                value={value.codigo}
+                                                key={value.codigo}
+                                            >
                                                 {value.nome.split(' ')[0]}
                                             </MenuItem>
                                         )
@@ -172,15 +192,13 @@ export function FipeForm({ setResulted, resulted }: FipeFormProps) {
                 </>
             )
         }
-
-
     }
 
-    useEffect(() => {
+    useMemo(() => {
         if (!isLoading && allBrands) {
             setBrands(allBrands)
         } else {
-            <p>Carregando</p>
+            return <p>Carregando</p>
         }
 
         if (selectedBrand) {
@@ -196,9 +214,5 @@ export function FipeForm({ setResulted, resulted }: FipeFormProps) {
         }
     }, [isLoading, selectedBrand, selectedModel, selectedYear])
 
-    return (
-        <>
-            {renderContent()}
-        </>
-    )
+    return <>{renderContent()}</>
 }
