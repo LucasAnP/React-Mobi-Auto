@@ -31,25 +31,3 @@ export const Container = styled.div<ContainerProps>`
         margin: 15px 0;
     }
 `
-
-export const FormContainer = styled.div`
-    display: flex;
-
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-
-    padding: 20px 40px 30px 40px;
-
-    background-color: ${({ theme }) => theme.color.inputs_background};
-`
-
-export const SpecificFormContainer = styled.div`
-    width: 100%;
-    height: 100%;
-
-    margin-top: 20px;
-`
-export const ButtonContainer = styled.div`
-    margin-top: 20px;
-`

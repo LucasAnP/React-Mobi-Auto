@@ -11,6 +11,9 @@ const theme = {
         result_page_background: '#dcf5f2',
 
         value_button_background: '#00a38c',
+
+        button_enabled_text: '#fdfcf8',
+        button_disabled_test: '#a9afb8',
     },
 }
 

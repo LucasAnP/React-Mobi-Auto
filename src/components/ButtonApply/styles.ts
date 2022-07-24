@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
-export const ButtonContainer = styled.button`
+interface ButtonProps {
+    disabled: boolean
+}
+
+export const ButtonContainer = styled.button<ButtonProps>`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11,12 +15,16 @@ export const ButtonContainer = styled.button`
     border-radius: 3px;
     border: none;
 
-    background-color: ${props => props.theme.color.primary};
+    background-color: ${({ disabled, theme }) =>
+        disabled ? theme.color.disabled : theme.color.primary};
 `
 
-export const ButtonText = styled.text`
-    color: #fdfcf8;
-    font: 500 12px Roboto;
+export const ButtonText = styled.text<ButtonProps>`
+    color: ${({ disabled, theme }) =>
+        disabled
+            ? theme.color.button_disabled_test
+            : theme.color.button_enabled_text};
+    font: 500 16px Roboto;
 
     text-align: center;
 `
