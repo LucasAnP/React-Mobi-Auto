@@ -1,91 +1,106 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import { useFetch } from '../../hooks/useFetch'
-import { api } from '../../services/api'
+import React, { useMemo, useState } from 'react'
+import { useCar } from '../../contexts/CarContext'
 import { ButtonApply } from '../ButtonApply'
-import { ButtonContainer, ButtonRounded, ButtonText, Container, FormContainer, ResultFormContainer, SpecificFormContainer, TextAfterResult } from './styles'
+import {
+    ButtonContainer,
+    ButtonRounded,
+    ButtonText,
+    Container,
+    FormContainer,
+    ResultFormContainer,
+    SpecificFormContainer,
+    TextAfterResult,
+} from './styles'
 
 interface FipeFormProps {
     setResulted: (resulted: boolean) => void
     resulted: boolean
 }
 
-interface Brand {
-    year: string;
-    nome: string;
-}
-
 export function FipeForm({ setResulted, resulted }: FipeFormProps) {
-    const [brands, setBrands] = useState([])
-    const [models, setModels] = useState([])
-    const [years, setYears] = useState([])
-    const [valueOfCar, setValueOfCar] = useState('')
+    const { brands, models, getAllModels, years, getAllYears, getPriceOfCar, priceOfCar } = useCar();
 
-    const [selectedBrand, setSelectedBrand] = useState()
-    const [selectedModel, setSelectedModel] = useState()
-    const [selectedYear, setSelectedYear] = useState()
+    const [selectedBrand, setSelectedBrand] = useState(0)
+    const [selectedBrandText, setSelectedBrandText] = useState('')
+
+    const [selectedModel, setSelectedModel] = useState(0)
+    const [selectedModelText, setSelectedModelText] = useState('')
+
+    const [selectedYear, setSelectedYear] = useState(0)
+    const [selectedYearText, setSelectedYearText] = useState('')
 
     const [clickedButton, setClickedButton] = useState(false)
 
     const [disabledButton, setDisabledButton] = useState(true)
 
-    const { allBrands, isLoading } = useFetch<Brand[]>('marcas')
-
-    function handleChange(event) {
+    function handleChange(event: any) {
+        brands.forEach((result, index) => {
+            if (result.codigo == event.target.value) {
+                setSelectedBrandText(brands[index].nome)
+            }
+        })
         setSelectedBrand(event.target.value)
     }
 
-    function handleChangeModel(event) {
+    function handleChangeModel(event: any) {
+        models.forEach((result, index) => {
+            if (result.codigo == event.target.value) {
+                setSelectedModelText(models[index].nome)
+            }
+        })
         setSelectedModel(event.target.value)
     }
 
-    function handleChangeYear(event) {
+    function handleChangeYear(event: any) {
+        years.forEach((result, index) => {
+            if (result.codigo == event.target.value) {
+                console.log('years[index].nome', years[index].nome)
+                setSelectedYearText(years[index].nome)
+            }
+        })
         setSelectedYear(event.target.value)
     }
 
-    async function getModels() {
-        const { data } = await api.get(`marcas/${selectedBrand}/modelos`)
-        setModels(data.modelos)
-    }
-
-    async function getYearOfCar() {
-        const { data } = await api.get(
-            `marcas/${selectedBrand}/modelos/${selectedModel}/anos`
-        )
-        setYears(data)
-    }
-
-    async function getValueOfCar() {
-        const { data } = await api.get(
-            `marcas/${selectedBrand}/modelos/${selectedModel}/anos/${selectedYear}`
-        )
-        setValueOfCar(data.Valor)
-    }
-
     async function onClickApplyButton() {
-        getValueOfCar()
+        getPriceOfCar(selectedBrand, selectedModel, selectedYear)
         setClickedButton(true)
         setDisabledButton(true)
         setResulted(true)
     }
 
-    function renderContent() {
-        if (resulted) {
-            return (
+    useMemo(() => {
+        if (selectedBrand) {
+            getAllModels(selectedBrand)
+        }
+
+        if (selectedBrand && selectedModel) {
+            getAllYears(selectedBrand, selectedModel)
+        }
+
+        if (selectedBrand && selectedModel && selectedYear && !clickedButton) {
+            setDisabledButton(false)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [clickedButton, selectedBrand, selectedModel, selectedYear])
+
+    return (
+        <>
+            {resulted ?
                 <Container>
-                    <h1>{`Tabela Fipe: Preço ${selectedBrand}${selectedModel}${selectedYear}`}</h1>
+                    <h1>{`Tabela Fipe: Preço ${selectedBrandText.split(' ')[0]} ${selectedModelText.split(' ')[0]} ${selectedYearText.split(' ')[0]}`}</h1>
                     <ResultFormContainer>
                         <ButtonContainer>
                             <ButtonRounded>
-                                <ButtonText>{valueOfCar.split(',')[0]}</ButtonText>
+                                <ButtonText>
+                                    {priceOfCar.split(',')[0]}
+                                </ButtonText>
                             </ButtonRounded>
                         </ButtonContainer>
                     </ResultFormContainer>
                     <TextAfterResult>{`Este é o preço de compra do veículo`}</TextAfterResult>
                 </Container>
-            )
-        } else {
-            return (
+                :
                 <>
                     <h1>Tabela Fipe</h1>
                     <p>Consulte o valor de um veículo de forma gratúita</p>
@@ -104,7 +119,10 @@ export function FipeForm({ setResulted, resulted }: FipeFormProps) {
                                 >
                                     {brands.map(value => {
                                         return (
-                                            <MenuItem value={value.codigo}>
+                                            <MenuItem
+                                                value={value.codigo}
+                                                key={value.codigo}
+                                            >
                                                 {value.nome.split(' ')[0]}
                                             </MenuItem>
                                         )
@@ -128,7 +146,10 @@ export function FipeForm({ setResulted, resulted }: FipeFormProps) {
                                 >
                                     {models.map(value => {
                                         return (
-                                            <MenuItem value={value.codigo}>
+                                            <MenuItem
+                                                value={value.codigo}
+                                                key={value.codigo}
+                                            >
                                                 {value.nome}
                                             </MenuItem>
                                         )
@@ -152,7 +173,10 @@ export function FipeForm({ setResulted, resulted }: FipeFormProps) {
                                 >
                                     {years.map(value => {
                                         return (
-                                            <MenuItem value={value.codigo}>
+                                            <MenuItem
+                                                value={value.codigo}
+                                                key={value.codigo}
+                                            >
                                                 {value.nome.split(' ')[0]}
                                             </MenuItem>
                                         )
@@ -170,35 +194,7 @@ export function FipeForm({ setResulted, resulted }: FipeFormProps) {
                         </ButtonContainer>
                     </FormContainer>
                 </>
-            )
-        }
-
-
-    }
-
-    useEffect(() => {
-        if (!isLoading && allBrands) {
-            setBrands(allBrands)
-        } else {
-            <p>Carregando</p>
-        }
-
-        if (selectedBrand) {
-            getModels()
-        }
-
-        if (selectedBrand && selectedModel) {
-            getYearOfCar()
-        }
-
-        if (selectedBrand && selectedModel && selectedYear && !clickedButton) {
-            setDisabledButton(false)
-        }
-    }, [isLoading, selectedBrand, selectedModel, selectedYear])
-
-    return (
-        <>
-            {renderContent()}
+            }
         </>
     )
 }

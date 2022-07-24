@@ -12,9 +12,7 @@ const Home: React.FC = () => {
                 <title>Automóveis</title>
             </Head>
 
-            <main>
-                <FipeForm resulted={resulted} setResulted={setResulted} />
-            </main>
+            <FipeForm resulted={resulted} setResulted={setResulted} />
         </Container >
     )
 }
