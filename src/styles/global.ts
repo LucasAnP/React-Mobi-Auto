@@ -7,8 +7,9 @@ export default createGlobalStyle`
         box-sizing: border-box ;
     }
 
-    body{
-        background-color: ${props => props.theme.color.background};
-        color: ${props => props.theme.color.text};
+    body {
+        background-color: ${({ theme }) => theme.color.background};
+        color: ${({ theme }) => theme.color.text};
+        font: 400 16px Roboto;
     }
 `
