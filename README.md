@@ -56,7 +56,7 @@ function updateData(firstObject, secondObject){
   }
 ```
 
-## Exercício 3 - updateData
+## Exercício 3 - getRickAndMortyCharacters
 
 ```
 async function getRickAndMortyCharacters(){
