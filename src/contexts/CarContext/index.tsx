@@ -44,6 +44,7 @@ interface CarContextData {
         selectedModel: number,
         selectedYear: number
     ) => Promise<void>
+    priceOfCar: string;
     finalCar: Car
 }
 
@@ -127,6 +128,7 @@ function CarProvider({ children }: CarProviderProps) {
                 years,
                 getAllYears,
                 getPriceOfCar,
+                priceOfCar
             }}
         >
             {children}

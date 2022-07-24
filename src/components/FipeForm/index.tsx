@@ -19,9 +19,7 @@ interface FipeFormProps {
 }
 
 export function FipeForm({ setResulted, resulted }: FipeFormProps) {
-    const { brands, models, getAllModels, years, getAllYears, getPriceOfCar } = useCar();
-
-    const [valueOfCar, setValueOfCar] = useState('')
+    const { brands, models, getAllModels, years, getAllYears, getPriceOfCar, priceOfCar } = useCar();
 
     const [selectedBrand, setSelectedBrand] = useState(0)
     const [selectedBrandText, setSelectedBrandText] = useState('')
@@ -95,7 +93,7 @@ export function FipeForm({ setResulted, resulted }: FipeFormProps) {
                         <ButtonContainer>
                             <ButtonRounded>
                                 <ButtonText>
-                                    {valueOfCar.split(',')[0]}
+                                    {priceOfCar.split(',')[0]}
                                 </ButtonText>
                             </ButtonRounded>
                         </ButtonContainer>

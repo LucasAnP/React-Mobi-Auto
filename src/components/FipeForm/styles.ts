@@ -20,9 +20,11 @@ export const Container = styled.div`
 export const FormContainer = styled.div`
     display: flex;
 
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    flex-direction: column;
+
+    width: 41%;
 
     padding: 20px 40px 30px 40px;
 

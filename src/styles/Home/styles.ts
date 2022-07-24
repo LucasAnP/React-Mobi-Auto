@@ -9,6 +9,7 @@ export const Container = styled.div<ContainerProps>`
     height: 100vh;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
@@ -22,14 +23,4 @@ export const Container = styled.div<ContainerProps>`
         text-align: center;
         margin: 15px 0;
     }
-`
-
-export const FipeFormContainer = styled.div`
-    width: 50vw;
-    height: 50vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 `
