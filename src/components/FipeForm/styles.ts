@@ -7,6 +7,14 @@ export const Container = styled.div`
     align-items: center;
 
     flex-direction: column;
+
+    h1 {
+        color: ${props => props.theme.color.text};
+
+        font: 700 36px Roboto bold;
+
+        text-align: center;
+    }
 `
 
 export const FormContainer = styled.div`
@@ -28,7 +36,7 @@ export const ResultFormContainer = styled.div`
     align-items: center;
     flex-direction: column;
 
-    padding: 20px 40px 30px 40px;
+    padding: 20px 40px 20px 40px;
 `
 
 export const SpecificFormContainer = styled.div`
@@ -47,7 +55,7 @@ export const ButtonRounded = styled.button`
     align-items: center;
     justify-content: center;
 
-    height: 2.5rem;
+    height: 2.7rem;
     width: 8.5rem;
 
     border-radius: 30px;
@@ -57,11 +65,13 @@ export const ButtonRounded = styled.button`
 `
 
 export const ButtonText = styled.text`
-    color: #fdfcf8;
-    font: 700 18px Roboto;
+    font: 700 22px Roboto;
 
     text-align: center;
+
+    color: ${({ theme }) => theme.color.button_enabled_text};
 `
+
 export const TextAfterResult = styled.text`
     color: #7c828b;
     font: 400 16px Roboto;

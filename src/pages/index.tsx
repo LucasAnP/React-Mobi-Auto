@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
-import { Container } from '../styles/Home/styles'
+import { Container, FipeFormContainer } from '../styles/Home/styles'
 import { FipeForm } from '../components/FipeForm'
 
 const Home: React.FC = () => {
@@ -12,9 +12,9 @@ const Home: React.FC = () => {
                 <title>Automóveis</title>
             </Head>
 
-            <main>
+            <FipeFormContainer>
                 <FipeForm resulted={resulted} setResulted={setResulted} />
-            </main>
+            </FipeFormContainer>
         </Container >
     )
 }

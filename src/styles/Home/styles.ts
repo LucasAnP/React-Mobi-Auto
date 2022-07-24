@@ -15,14 +15,6 @@ export const Container = styled.div<ContainerProps>`
     background-color: ${({ theme, resulted }) =>
         resulted ? theme.color.result_page_background : theme.color.background};
 
-    h1 {
-        color: ${props => props.theme.color.text};
-
-        font: 700 Roboto bold;
-
-        text-align: center;
-    }
-
     p {
         color: ${props => props.theme.color.text};
         font: 700 22px Roboto;
@@ -30,4 +22,14 @@ export const Container = styled.div<ContainerProps>`
         text-align: center;
         margin: 15px 0;
     }
+`
+
+export const FipeFormContainer = styled.div`
+    width: 50vw;
+    height: 50vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `
