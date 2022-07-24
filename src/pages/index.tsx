@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
-import { Container, FipeFormContainer } from '../styles/Home/styles'
+import { Container } from '../styles/Home/styles'
 import { FipeForm } from '../components/FipeForm'
 
 const Home: React.FC = () => {
