@@ -11,7 +11,7 @@ export const Container = styled.div`
     h1 {
         color: ${props => props.theme.color.text};
 
-        font: 700 36px Roboto bold;
+        font: 700 36px Roboto bold, sans-serif;
 
         text-align: center;
     }
@@ -23,8 +23,9 @@ export const FormContainer = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-
-    width: 26rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px -2px gray;
+    width: 31rem;
 
     padding: 20px 40px 30px 40px;
 
@@ -67,7 +68,7 @@ export const ButtonRounded = styled.button`
 `
 
 export const ButtonText = styled.text`
-    font: 700 22px Roboto;
+    font: 700 22px Roboto, sans-serif;
 
     text-align: center;
 
@@ -76,7 +77,7 @@ export const ButtonText = styled.text`
 
 export const TextAfterResult = styled.text`
     color: #7c828b;
-    font: 400 16px Roboto;
+    font: 400 16px Roboto, sans-serif;
 
     text-align: center;
 `

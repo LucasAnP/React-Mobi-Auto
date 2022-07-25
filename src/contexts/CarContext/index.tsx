@@ -6,28 +6,23 @@ import {
     useState,
 } from 'react'
 import { api } from '../../services/api'
-
 interface CarProviderProps {
     children: ReactNode
 }
-
 interface Car {
     brand: string
     model: string
     year: string
     price: string
 }
-
 interface Brand {
     nome: string
     codigo: string
 }
-
 interface Model {
     nome: string
     codigo: string
 }
-
 interface Year {
     nome: string
     codigo: string

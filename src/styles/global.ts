@@ -10,6 +10,6 @@ export default createGlobalStyle`
     body {
         background-color: ${({ theme }) => theme.color.background};
         color: ${({ theme }) => theme.color.text};
-        font: 400 16px Roboto;
+        font: 400 16px Roboto, sans-serif;
     }
 `

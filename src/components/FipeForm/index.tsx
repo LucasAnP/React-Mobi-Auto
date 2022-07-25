@@ -51,11 +51,9 @@ export function FipeForm({ setResulted, resulted }: FipeFormProps) {
         })
         setSelectedModel(event.target.value)
     }
-
     function handleChangeYear(event: any) {
         years.forEach((result, index) => {
             if (result.codigo == event.target.value) {
-                console.log('years[index].nome', years[index].nome)
                 setSelectedYearText(years[index].nome)
             }
         })
@@ -103,7 +101,7 @@ export function FipeForm({ setResulted, resulted }: FipeFormProps) {
                 :
                 <>
                     <h1>Tabela Fipe</h1>
-                    <p>Consulte o valor de um veículo de forma gratúita</p>
+                    <p>Consulte o valor de um veículo de forma gratuita</p>
                     <FormContainer>
                         {/* Brand  */}
                         <SpecificFormContainer>
@@ -166,7 +164,7 @@ export function FipeForm({ setResulted, resulted }: FipeFormProps) {
                                     Ano
                                 </InputLabel>
                                 <Select
-                                    value={selectedBrand}
+                                    value={selectedYear}
                                     label="Ano"
                                     onChange={handleChangeYear}
                                     disabled={years.length < 1}
@@ -177,7 +175,7 @@ export function FipeForm({ setResulted, resulted }: FipeFormProps) {
                                                 value={value.codigo}
                                                 key={value.codigo}
                                             >
-                                                {value.nome.split(' ')[0]}
+                                                {value.nome}
                                             </MenuItem>
                                         )
                                     })}

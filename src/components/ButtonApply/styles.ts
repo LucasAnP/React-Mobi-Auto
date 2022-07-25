@@ -24,7 +24,6 @@ export const ButtonText = styled.text<ButtonProps>`
         disabled
             ? theme.color.button_disabled_test
             : theme.color.button_enabled_text};
-    font: 500 16px Roboto;
-
+    font: 500 16px Roboto, sans-serif;
     text-align: center;
 `
