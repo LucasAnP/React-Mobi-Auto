@@ -18,7 +18,7 @@ export const Container = styled.div<ContainerProps>`
 
     p {
         color: ${props => props.theme.color.text};
-        font: 700 22px Roboto;
+        font: 700 22px Roboto, sans-serif;
 
         text-align: center;
         margin: 15px 0;

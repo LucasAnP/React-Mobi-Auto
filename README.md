@@ -1,4 +1,5 @@
 # Mobi-Auto
+
 Desafio
 
 O teste é composto por duas partes: Exercícios e Projeto
@@ -8,14 +9,16 @@ O teste é composto por duas partes: Exercícios e Projeto
 # Projeto
 
 > O projeto consiste em construir duas páginas (Busca e Resultado), de acordo com as imagens no final desse
-documento, utilizando React.
+> documento, utilizando React.
 
 ### Tecnologias
 
 =================
 
 <!--ts-->
+
 ### Front-End
+
     - React
     - TypeScrypt
     - Next.js
@@ -23,11 +26,12 @@ documento, utilizando React.
     - Axios
     - Styled Component
     - Fonts
-        - Roboto 400, 500, 700
+        - Roboto, sans-serif 400, 500, 700
     - Vercel
+
   <!--te-->
-  
-> API Utilizada = http://deividfortuna.github.io/fipe/ 
+
+> API Utilizada = http://deividfortuna.github.io/fipe/
 
 =================
 
@@ -38,8 +42,8 @@ function maskify(word:string){
     const stringToMaskify = word.length - 4;
     return stringToMaskify >=1 ? word.replace(/.(?=.{4})/g, "#"): word;
   }
- ```
- 
+```
+
 ## Exercício 2 - updateData
 
 ```
